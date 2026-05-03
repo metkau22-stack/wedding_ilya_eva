@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Илья и Ева - свадебное приглашение</title>
+  <meta
+    name="description"
+    content="Свадебное приглашение Ильи и Евы. 5 августа 2026 года."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="preload" as="image" href="assets/img/ilya_eva_couple.jpg?v=20260503a">
+  <link rel="stylesheet" href="styles.css?v=20260503a">
+</head>
+<body>
+  <div class="video-background" aria-hidden="true">
+    <video data-background-video autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture>
+      <source src="2fon.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="page-shell">
+    <main id="top">
+      <section class="hero section">
+        <div class="hero__copy reveal">
+          <p class="section-kicker">wedding invitation</p>
+          <p class="script-label">wedding day</p>
+          <div class="hero__title-stack">
+            <h1 class="hero__title">
+              <span>Илья</span>
+              <em>&amp;</em>
+              <span>Ева</span>
+            </h1>
+          </div>
+          <p class="hero__date">05 | 08 | 2026</p>
+          <p class="hero__text">
+            Будем счастливы разделить этот день вместе с вами и провести его в кругу
+            самых близких людей.
+          </p>
+
+          <div class="countdown" data-countdown aria-label="Обратный отсчет до свадьбы">
+            <div class="countdown__item" data-reveal style="--reveal-delay: 80ms;">
+              <strong data-unit="days">00</strong>
+              <span>дней</span>
+            </div>
+            <div class="countdown__item" data-reveal style="--reveal-delay: 160ms;">
+              <strong data-unit="hours">00</strong>
+              <span>часов</span>
+            </div>
+            <div class="countdown__item" data-reveal style="--reveal-delay: 240ms;">
+              <strong data-unit="minutes">00</strong>
+              <span>минут</span>
+            </div>
+            <div class="countdown__item" data-reveal style="--reveal-delay: 320ms;">
+              <strong data-unit="seconds">00</strong>
+              <span>секунд</span>
+            </div>
+          </div>
+
+          <div class="hero__actions" data-reveal style="--reveal-delay: 220ms;">
+            <button class="button button--filled" type="button" data-calendar-button>
+              Добавить в календарь
+            </button>
+            <a class="button" href="#schedule">Посмотреть тайминг</a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal">
+          <div class="hero-collage">
+            <div class="showcase-card" data-reveal style="--reveal-delay: 120ms;">
+              <div class="showcase-card__glow"></div>
+              <div class="showcase-card__main">
+                <p class="showcase-card__kicker">save the date</p>
+                <h2>Илья &amp; Ева</h2>
+                <p class="showcase-card__date">5 августа 2026</p>
+                <div class="showcase-card__gallery">
+                  <figure class="showcase-card__image">
+                    <img
+                      src="assets/img/ilya_eva_couple.jpg"
+                      srcset="assets/img/ilya_eva_couple.jpg 1280w, assets/img/ilya_eva_couple-wide.jpg 2560w"
+                      sizes="(max-width: 739px) 92vw, 46vw"
+                      alt="Илья и Ева"
+                      decoding="async"
+                      fetchpriority="high"
+                    >
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="welcome">
+        <div class="section-head">
+          <p class="section-kicker">дорогие гости</p>
+          <h2 class="section-title">Мы рады пригласить вас на самый важный день нашей семьи</h2>
+        </div>
+
+        <div class="glass-card invitation-card" data-reveal>
+          <div class="invitation-card__text">
+            <p>
+              Этот день станет для нас по-настоящему особенным, и мы мечтаем провести его
+              рядом с вами. Приглашаем вас стать частью нашего праздника и разделить с нами
+              радость этого вечера.
+            </p>
+            <p class="invitation-card__quote">
+              Там, где посеяна любовь, растет радость.
+            </p>
+          </div>
+
+          <figure class="invitation-card__photo">
+            <img
+              src="assets/img/ilya_eva_kiss.jpg"
+              alt="Илья и Ева на прогулке"
+              loading="lazy"
+              decoding="async"
+            >
+          </figure>
+        </div>
+      </section>
+
+      <section class="section reveal" id="location">
+        <div class="section-head section-head--compact">
+          <p class="section-kicker">save the date</p>
+        </div>
+
+        <div class="overview-grid">
+          <article class="glass-card calendar-card" data-reveal style="--reveal-delay: 80ms;">
+            <p class="calendar-card__month">Август 2026г</p>
+            <div class="calendar-card__weekdays">
+              <span>Пн</span>
+              <span>Вт</span>
+              <span>Ср</span>
+              <span>Чт</span>
+              <span>Пт</span>
+              <span>Сб</span>
+              <span>Вс</span>
+            </div>
+            <div class="calendar-card__days">
+              <span class="is-empty"></span>
+              <span class="is-empty"></span>
+              <span class="is-empty"></span>
+              <span class="is-empty"></span>
+              <span class="is-empty"></span>
+              <span>1</span>
+              <span>2</span>
+              <span>3</span>
+              <span>4</span>
+              <span class="is-active">5</span>
+              <span>6</span>
+              <span>7</span>
+              <span>8</span>
+              <span>9</span>
+              <span>10</span>
+              <span>11</span>
+              <span>12</span>
+              <span>13</span>
+              <span>14</span>
+              <span>15</span>
+              <span>16</span>
+              <span>17</span>
+              <span>18</span>
+              <span>19</span>
+              <span>20</span>
+              <span>21</span>
+              <span>22</span>
+              <span>23</span>
+              <span>24</span>
+              <span>25</span>
+              <span>26</span>
+              <span>27</span>
+              <span>28</span>
+              <span>29</span>
+              <span>30</span>
+              <span>31</span>
+            </div>
+          </article>
+
+          <article class="glass-card venue-card" data-reveal style="--reveal-delay: 180ms;">
+            <p class="section-kicker">место проведения</p>
+            <h3>Бар «Элла»</h3>
+            <p class="venue-card__address">
+              Праздничный банкет пройдет на веранде.
+            </p>
+            <p>
+              Точный адрес добавим после уточнения площадки.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal section--timing" id="schedule">
+        <div class="section-head">
+          <p class="section-kicker">день по минутам</p>
+          <h2 class="section-title">Timing</h2>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline__item" data-reveal style="--reveal-delay: 40ms;">
+            <div class="timeline__text">
+              <p class="timeline__time">17:00</p>
+              <h3>ЗАГС</h3>
+              <p class="timeline__place">Торжественная регистрация</p>
+            </div>
+          </article>
+
+          <article class="timeline__item" data-reveal style="--reveal-delay: 120ms;">
+            <div class="timeline__text">
+              <p class="timeline__time">19:00</p>
+              <h3>Праздничный банкет</h3>
+              <p class="timeline__place">Бар «Элла», веранда</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section reveal" id="rsvp">
+        <div class="section-head">
+          <p class="section-kicker">анкета гостя</p>
+          <h2 class="section-title">Подтвердите, пожалуйста, свое присутствие</h2>
+        </div>
+
+        <form class="glass-card rsvp-form" data-rsvp-form data-reveal>
+          <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <label class="form-field">
+            <span>Ваше имя</span>
+            <input type="text" name="guest_name" placeholder="Например, Анна Петрова" required>
+          </label>
+
+          <fieldset class="form-group">
+            <legend>Будете ли вы на свадьбе?</legend>
+            <label class="choice">
+              <input type="radio" name="attendance" value="Да, с удовольствием" required>
+              <span>Да, с удовольствием</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="attendance" value="К сожалению, не смогу">
+              <span>К сожалению, не смогу</span>
+            </label>
+          </fieldset>
+
+          <label class="form-field">
+            <span>Если будете не одни, укажите имя спутника или спутницы</span>
+            <input type="text" name="plus_one" placeholder="Имя спутника или спутницы">
+          </label>
+
+          <fieldset class="form-group">
+            <legend>Что предпочитаете из напитков?</legend>
+            <div class="choices-grid">
+              <label class="choice"><input type="checkbox" name="drinks" value="Красное вино"><span>Красное вино</span></label>
+              <label class="choice"><input type="checkbox" name="drinks" value="Белое вино"><span>Белое вино</span></label>
+              <label class="choice"><input type="checkbox" name="drinks" value="Шампанское"><span>Шампанское</span></label>
+              <label class="choice"><input type="checkbox" name="drinks" value="Виски/Коньяк"><span>Виски/Коньяк</span></label>
+              <label class="choice"><input type="checkbox" name="drinks" value="Водка"><span>Водка</span></label>
+              <label class="choice"><input type="checkbox" name="drinks" value="Мартини"><span>Мартини</span></label>
+              <label class="choice"><input type="checkbox" name="drinks" value="Не буду пить алкоголь"><span>Не буду пить алкоголь</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Будет ли с вами ребенок?</legend>
+            <label class="choice">
+              <input type="radio" name="with_child" value="Да" required>
+              <span>Да</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="with_child" value="Нет">
+              <span>Нет</span>
+            </label>
+          </fieldset>
+
+          <div class="rsvp-form__actions">
+            <button class="button button--filled" type="submit">Отправить анкету</button>
+            <p class="rsvp-form__note" data-form-status></p>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer" data-reveal>
+      <p class="site-footer__heart">♥</p>
+      <p>С любовью, Илья и Ева</p>
+    </footer>
+  </div>
+
+  <script src="script.js?v=20260503a"></script>
+</body>
+</html>
