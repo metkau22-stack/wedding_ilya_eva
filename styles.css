@@ -132,6 +132,63 @@ button {
   overflow-x: hidden;
 }
 
+.payment-watermark,
+.payment-badge {
+  position: fixed;
+  pointer-events: none;
+  user-select: none;
+  z-index: 80;
+}
+
+.payment-watermark {
+  inset: -14vh -12vw;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: 72px 46px;
+  align-content: center;
+  justify-items: center;
+  opacity: 0.16;
+  transform: rotate(-18deg);
+  mix-blend-mode: multiply;
+}
+
+.payment-watermark span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42em 0.86em;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(92, 28, 28, 0.92);
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1.35rem, 4vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.payment-badge {
+  left: 50%;
+  bottom: 14px;
+  z-index: 90;
+  transform: translateX(-50%);
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: var(--radius-pill);
+  background: rgba(68, 20, 20, 0.78);
+  box-shadow: 0 12px 30px rgba(31, 15, 11, 0.24);
+  color: rgba(255, 255, 255, 0.96);
+  font-family: "Manrope", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .section,
 .site-footer {
   width: 100%;
@@ -1169,26 +1226,6 @@ html.reveal-ready .reveal.is-visible {
   transform: none;
 }
 
-/* Keep the first viewport fully interactive and visible immediately. */
-html.reveal-ready .hero .reveal,
-html.reveal-ready .hero [data-reveal] {
-  opacity: 1;
-  transform: none;
-  transition-duration: 0ms;
-  transition-delay: 0ms;
-  will-change: auto;
-}
-
-html.reveal-ready #welcome,
-html.reveal-ready #welcome .reveal,
-html.reveal-ready #welcome [data-reveal] {
-  opacity: 1;
-  transform: none;
-  transition-duration: 0ms;
-  transition-delay: 0ms;
-  will-change: auto;
-}
-
 @media (min-width: 740px) {
   .site-header {
     grid-template-columns: auto 1fr auto;
@@ -1253,6 +1290,26 @@ html.reveal-ready #welcome [data-reveal] {
 
   .video-background::after {
     background: linear-gradient(180deg, rgba(28, 32, 22, 0.2) 0%, rgba(28, 32, 22, 0.12) 35%, rgba(28, 32, 22, 0.26) 100%);
+  }
+
+  .payment-watermark {
+    inset: -10vh -38vw;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 56px 26px;
+    opacity: 0.19;
+  }
+
+  .payment-watermark span {
+    font-size: clamp(1.15rem, 8vw, 2.25rem);
+    letter-spacing: 0.12em;
+  }
+
+  .payment-badge {
+    bottom: 10px;
+    max-width: calc(100vw - 24px);
+    padding: 9px 12px;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
   }
 
   .glass-card,
@@ -1455,6 +1512,8 @@ html.reveal-ready #welcome [data-reveal] {
     scroll-behavior: auto;
   }
 
+  html.reveal-ready [data-reveal],
+  html.reveal-ready .reveal,
   [data-reveal],
   .reveal {
     opacity: 1;

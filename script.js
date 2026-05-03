@@ -1,5 +1,10 @@
 const enableRevealAnimations = true;
-const revealInitDelayMs = 1800;
+const revealInitDelayMs = 120;
+let revealInitialized = false;
+
+if (enableRevealAnimations) {
+  document.documentElement.classList.add("reveal-ready");
+}
 
 const weddingDate = new Date("2026-08-05T17:00:00+03:00");
 const targetEmail = "smirnova.island@yandex.ru";
@@ -138,15 +143,22 @@ function initBackgroundVideo() {
 }
 
 function initReveal() {
-  if (document.documentElement.classList.contains("reveal-ready")) {
+  if (revealInitialized) {
     return;
   }
 
+  revealInitialized = true;
+
   const autoRevealGroups = [
-    ["#location .section-head > *", 50],
-    ["#schedule .timeline__item", 60],
-    ["#rsvp .rsvp-form", 80],
-    [".site-footer", 100],
+    [".section-head > *", 50],
+    [".showcase-card__main > *", 70],
+    [".invitation-card__text > *", 70],
+    [".calendar-card > *", 60],
+    [".venue-card > *", 70],
+    [".timeline__text > *", 50],
+    [".rsvp-form > *:not(.rsvp-form__actions)", 50],
+    [".rsvp-form__actions > *", 60],
+    [".site-footer > *", 70],
   ];
 
   autoRevealGroups.forEach(([selector, step]) => {
@@ -160,8 +172,7 @@ function initReveal() {
     });
   });
 
-  const items = Array.from(document.querySelectorAll(".reveal, [data-reveal]"))
-    .filter((item) => !item.closest(".hero") && !item.closest("#welcome"));
+  const items = Array.from(document.querySelectorAll(".reveal, [data-reveal]"));
 
   function showItem(item) {
     item.classList.add("is-visible");
@@ -173,16 +184,26 @@ function initReveal() {
     return rect.top < window.innerHeight * 0.88;
   }
 
-  items.forEach((item) => {
-    if (isAlreadyInView(item)) {
-      showItem(item);
-    }
-  });
+  const initialItems = items.filter(isAlreadyInView);
+  const initialItemsSet = new Set(initialItems);
+  const showInitialItems = () => {
+    initialItems.forEach(showItem);
+  };
 
-  document.documentElement.classList.add("reveal-ready");
+  if ("requestAnimationFrame" in window) {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(showInitialItems);
+    });
+  } else {
+    showInitialItems();
+  }
 
   if (!("IntersectionObserver" in window)) {
-    items.forEach(showItem);
+    items.forEach((item) => {
+      if (!initialItemsSet.has(item)) {
+        showItem(item);
+      }
+    });
     return;
   }
 
@@ -202,7 +223,7 @@ function initReveal() {
   );
 
   items.forEach((item) => {
-    if (!item.classList.contains("is-visible")) {
+    if (!initialItemsSet.has(item)) {
       observer.observe(item);
     }
   });
@@ -213,16 +234,7 @@ function scheduleRevealAnimations() {
     return;
   }
 
-  window.setTimeout(() => {
-    const startReveal = () => initReveal();
-
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(startReveal, { timeout: 1200 });
-      return;
-    }
-
-    startReveal();
-  }, revealInitDelayMs);
+  window.setTimeout(initReveal, revealInitDelayMs);
 }
 
 function initMobileMenu() {

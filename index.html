@@ -14,10 +14,26 @@
     href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap"
     rel="stylesheet"
   >
-  <link rel="preload" as="image" href="assets/img/ilya_eva_couple.jpg?v=20260503a">
-  <link rel="stylesheet" href="styles.css?v=20260503a">
+  <script>
+    document.documentElement.classList.add("reveal-ready");
+  </script>
+  <link rel="preload" as="image" href="assets/img/ilya_eva_couple.jpg?v=20260503c">
+  <link rel="stylesheet" href="styles.css?v=20260503b">
 </head>
 <body>
+  <div class="payment-watermark" aria-hidden="true">
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+    <span>ДЕМО • НЕ ОПЛАЧЕНО</span>
+  </div>
+  <div class="payment-badge" aria-hidden="true">Демо-версия. Сайт не оплачен</div>
+
   <div class="video-background" aria-hidden="true">
     <video data-background-video autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture>
       <source src="2fon.mp4" type="video/mp4">
@@ -81,8 +97,8 @@
                 <div class="showcase-card__gallery">
                   <figure class="showcase-card__image">
                     <img
-                      src="assets/img/ilya_eva_couple.jpg"
-                      srcset="assets/img/ilya_eva_couple.jpg 1280w, assets/img/ilya_eva_couple-wide.jpg 2560w"
+                      src="assets/img/ilya_eva_couple.jpg?v=20260503c"
+                      srcset="assets/img/ilya_eva_couple.jpg?v=20260503c 1280w, assets/img/ilya_eva_couple-wide.jpg?v=20260503c 1537w"
                       sizes="(max-width: 739px) 92vw, 46vw"
                       alt="Илья и Ева"
                       decoding="async"
@@ -116,7 +132,7 @@
 
           <figure class="invitation-card__photo">
             <img
-              src="assets/img/ilya_eva_kiss.jpg"
+              src="assets/img/ilya_eva_kiss.jpg?v=20260503c"
               alt="Илья и Ева на прогулке"
               loading="lazy"
               decoding="async"
@@ -186,11 +202,34 @@
             <p class="section-kicker">место проведения</p>
             <h3>Бар «Элла»</h3>
             <p class="venue-card__address">
-              Праздничный банкет пройдет на веранде.
+              пр. Ленина, 2, Егорьевск, Московская обл., Россия, 140304
             </p>
-            <p>
-              Точный адрес добавим после уточнения площадки.
-            </p>
+            <div class="map-frame">
+              <iframe
+                title="Карта бара Элла"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=39.0474%2C55.3699%2C39.0574%2C55.3760&layer=mapnik&marker=55.3729668%2C39.0524102"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="venue-card__actions">
+              <a
+                class="button button--filled"
+                href="https://yandex.ru/maps/?text=%D0%91%D0%B0%D1%80%20%C2%AB%D0%AD%D0%BB%D0%BB%D0%B0%C2%BB%2C%20%D0%BF%D1%80.%20%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C%202%2C%20%D0%95%D0%B3%D0%BE%D1%80%D1%8C%D0%B5%D0%B2%D1%81%D0%BA%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB.%2C%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20140304"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Яндекс Карты
+              </a>
+              <a
+                class="button"
+                href="https://maps.google.com/?q=%D0%91%D0%B0%D1%80%20%C2%AB%D0%AD%D0%BB%D0%BB%D0%B0%C2%BB%2C%20%D0%BF%D1%80.%20%D0%9B%D0%B5%D0%BD%D0%B8%D0%BD%D0%B0%2C%202%2C%20%D0%95%D0%B3%D0%BE%D1%80%D1%8C%D0%B5%D0%B2%D1%81%D0%BA%2C%20%D0%9C%D0%BE%D1%81%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B1%D0%BB.%2C%20%D0%A0%D0%BE%D1%81%D1%81%D0%B8%D1%8F%2C%20140304"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Google Maps
+              </a>
+            </div>
           </article>
         </div>
       </section>
@@ -290,6 +329,6 @@
     </footer>
   </div>
 
-  <script src="script.js?v=20260503a"></script>
+  <script src="script.js?v=20260503b"></script>
 </body>
 </html>
