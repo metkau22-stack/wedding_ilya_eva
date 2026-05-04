@@ -252,8 +252,18 @@
           <h2 class="section-title">Подтвердите, пожалуйста, свое присутствие</h2>
         </div>
 
-        <form class="glass-card rsvp-form" data-rsvp-form data-reveal>
+        <form
+          class="glass-card rsvp-form"
+          action="https://formsubmit.co/smirnova.island@yandex.ru"
+          method="POST"
+          data-rsvp-form
+          data-reveal
+        >
           <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="_subject" value="Анкета гостя">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://metkau22-stack.github.io/wedding_ilya_eva/?rsvp_sent=1#rsvp">
+          <input type="hidden" name="_url" value="">
 
           <label class="form-field">
             <span>Ваше имя</span>
@@ -316,6 +326,6 @@
     </footer>
   </div>
 
-  <script src="script.js?v=20260503b"></script>
+  <script src="script.js?v=20260504a"></script>
 </body>
 </html>

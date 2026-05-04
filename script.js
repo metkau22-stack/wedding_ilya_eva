@@ -9,8 +9,11 @@ if (enableRevealAnimations) {
 const weddingDate = new Date("2026-08-05T17:00:00+03:00");
 const targetEmail = "smirnova.island@yandex.ru";
 const formEndpoint = `https://formsubmit.co/ajax/${targetEmail}`;
-const formRequestTimeoutMs = 12000;
-const formRequestRetries = 1;
+const formPostEndpoint = `https://formsubmit.co/${targetEmail}`;
+const formRequestTimeoutMs = 9000;
+const formRequestRetries = 0;
+const formSuccessParam = "rsvp_sent";
+const formSuccessMessage = "Анкета отправлена. Спасибо, мы всё получили.";
 
 const countdownRoot = document.querySelector("[data-countdown]");
 const countdownUnits = {
@@ -318,6 +321,65 @@ async function sendRsvpPayload(payload) {
   throw lastError || new Error("Submission failed");
 }
 
+function getFormReturnUrl() {
+  const url = new URL(window.location.href);
+
+  url.searchParams.set(formSuccessParam, "1");
+  url.hash = "rsvp";
+
+  return url.toString();
+}
+
+function setFormHiddenValue(form, name, value) {
+  let input = form.querySelector(`input[name="${name}"]`);
+
+  if (!input) {
+    input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    form.prepend(input);
+  }
+
+  input.value = value;
+}
+
+function syncNativeFormSubmitFields(form, guestName = "") {
+  form.action = formPostEndpoint;
+  form.method = "POST";
+
+  setFormHiddenValue(form, "_subject", `Анкета гостя: ${guestName || "без имени"}`);
+  setFormHiddenValue(form, "_template", "table");
+  setFormHiddenValue(form, "_next", getFormReturnUrl());
+  setFormHiddenValue(form, "_url", window.location.href);
+}
+
+function submitFormNatively(form) {
+  if (window.HTMLFormElement && window.HTMLFormElement.prototype.submit) {
+    window.HTMLFormElement.prototype.submit.call(form);
+    return;
+  }
+
+  form.submit();
+}
+
+function showReturnedFormStatus(status) {
+  const url = new URL(window.location.href);
+
+  if (url.searchParams.get(formSuccessParam) !== "1") {
+    return;
+  }
+
+  if (status) {
+    status.textContent = formSuccessMessage;
+  }
+
+  url.searchParams.delete(formSuccessParam);
+
+  if (window.history && typeof window.history.replaceState === "function") {
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  }
+}
+
 function initRsvpForm() {
   const form = document.querySelector("[data-rsvp-form]");
   const status = document.querySelector("[data-form-status]");
@@ -328,8 +390,19 @@ function initRsvpForm() {
     return;
   }
 
+  let isSubmitting = false;
+
+  syncNativeFormSubmitFields(form);
+  showReturnedFormStatus(status);
+
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
+    if (isSubmitting) {
+      return;
+    }
+
+    isSubmitting = true;
 
     if (status) {
       status.textContent = "Отправляем анкету...";
@@ -348,6 +421,8 @@ function initRsvpForm() {
     const withChild = (formData.get("with_child") || "").toString().trim();
     const honey = (formData.get("_honey") || "").toString().trim();
 
+    syncNativeFormSubmitFields(form, guestName);
+
     const payload = new FormData();
     payload.append("Имя гостя", guestName || "Не указано");
     payload.append("Присутствие", attendance || "Не указано");
@@ -357,26 +432,34 @@ function initRsvpForm() {
     payload.append("_subject", `Анкета гостя: ${guestName || "без имени"}`);
     payload.append("_template", "table");
     payload.append("_captcha", "false");
+    payload.append("_next", getFormReturnUrl());
     payload.append("_url", window.location.href);
     payload.append("_honey", honey);
+
+    let nativeFallbackStarted = false;
 
     try {
       await sendRsvpPayload(payload);
 
       form.reset();
+      syncNativeFormSubmitFields(form);
 
       if (status) {
-        status.textContent = "Анкета отправлена. Спасибо, мы всё получили.";
+        status.textContent = formSuccessMessage;
       }
     } catch (error) {
       if (status) {
-        status.textContent =
-          window.location.protocol === "file:"
-            ? "Автоотправка не сработала из локального файла. Откройте сайт через хостинг или локальный сервер и подтвердите первое письмо от FormSubmit на smirnova.island@yandex.ru."
-            : "Не получилось отправить анкету автоматически. Проверьте подключение к интернету и подтвердите первое письмо от FormSubmit на smirnova.island@yandex.ru.";
+        status.textContent = "Автоотправка не прошла. Отправляем анкету резервным способом...";
       }
+
+      nativeFallbackStarted = true;
+      window.setTimeout(() => submitFormNatively(form), 120);
     } finally {
-      if (submitButton) {
+      if (!nativeFallbackStarted) {
+        isSubmitting = false;
+      }
+
+      if (submitButton && !nativeFallbackStarted) {
         submitButton.disabled = false;
         submitButton.textContent = initialButtonLabel;
       }
