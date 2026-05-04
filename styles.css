@@ -1132,6 +1132,18 @@ button {
   line-height: 1.6;
 }
 
+.rsvp-form__help {
+  margin: 2px 0 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.11);
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
 .rsvp-form button:disabled {
   opacity: 0.72;
   cursor: wait;

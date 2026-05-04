@@ -449,7 +449,7 @@ function initRsvpForm() {
       }
     } catch (error) {
       if (status) {
-        status.textContent = "Автоотправка не прошла. Отправляем анкету резервным способом...";
+        status.textContent = "Автоотправка не прошла. Откроется резервная отправка анкеты...";
       }
 
       nativeFallbackStarted = true;
